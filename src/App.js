@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [randomNumber, setRandomNumber] = useState(null);
+
+  const generateRandomNumber = () => {
+    const min = 1000;
+    const max = 9999;
+    const random = Math.floor(Math.random() * (max - min + 1)) + min;
+    setRandomNumber(random);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        <h1 className="header">ZEPP-LIFE</h1>
+        <button onClick={generateRandomNumber}>Синхронізація</button>
+        {randomNumber !== null && <p>Кількість зроблених кроків: {randomNumber}</p>}
+      </div>
     </div>
   );
 }
