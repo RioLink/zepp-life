@@ -13,17 +13,14 @@ function App() {
   const generateRandomNumber = () => {
     const min = 0;
     const max = 100;
-
-    // Генерация случайного числа для шагов
+  
     const randomSteps = Math.floor(Math.random() * (max - min + 1000)) + min;
-
-    // Установка случайного числа в состояние
+  
     setRandomNumber(randomSteps);
 
-    // Остальная логика
-    const randomWeight = Math.floor(Math.random() * (max - min + 1)) + min;
-    const randomWaistSize = Math.floor(Math.random() * (max - min + 1)) + min;
-    const randomHoursOfSleep = Math.floor(Math.random() * (max - min + 1)) + min;
+    const randomWeight = Math.floor(Math.random() * (100 - 40 + 1)) + 40;
+    const randomWaistSize = Math.floor(Math.random() * (70 - 30 + 1)) + 30;
+    const randomHoursOfSleep = Math.floor(Math.random() * (12 - 4 + 1)) + 4;
 
     setWeight(randomWeight);
     setWaistSize(randomWaistSize);
@@ -34,7 +31,6 @@ function App() {
     );
     setPercentage(randomPercentage);
   };
-
   const addGoal = (goal) => {
     setGoals([...goals, goal]);
   };
@@ -56,11 +52,11 @@ function App() {
       <div className="container">
         <h1 className="header">ZEPP-LIFE</h1>
         <button onClick={generateRandomNumber}>Синхронізація</button>
-        <p>Кількість зроблених кроків: <span className="number">{randomNumber !== null ? randomNumber : 'Нет данных'}</span></p>
+        <p>Кількість зроблених кроків: <span className="number">{randomNumber !== null ? randomNumber : 'Не має данних'}</span></p>
         <div className="horizontal-line"></div>
         <div className="indicators">
           <h2>Ваші бажані показники</h2>
-          <p>Вес: {weight}</p>
+          <p>Вага: {weight}</p>
           <p>Розмір талії: {waistSize}</p>
           <p>Кількість годин сну: {hoursOfSleep}</p>
           <p>Процент: {percentage}%</p>
