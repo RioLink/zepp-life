@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './Account.css'; // Импорт файла стилей CSS
+import './Account.css';
+import axios from 'axios';
 
 function Account() {
   const [loginData, setLoginData] = useState({ username: '', password: '' });
@@ -13,7 +14,20 @@ function Account() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    // Отправьте данные для входа на сервер и обработайте результат
+    try {
+      const response = await axios.post('/api/login', loginData);
+
+      if (response.data.success) {
+
+        console.log('Вход выполнен успешно');
+
+      } else {
+
+        console.error('Ошибка входа');
+      }
+    } catch (error) {
+      console.error('Ошибка при отправке данных для входа', error);
+    }
   };
 
   const handleRegister = async (e) => {
@@ -39,9 +53,17 @@ function Account() {
       return;
     }
 
-    // Отправьте данные для регистрации на сервер и обработайте результат
-  };
-
+    try {
+      const response = await axios.post('/api/register', registerData);
+      if (response.data.success) {
+        console.log('Регистрация выполнена успешно');
+      } else {
+        console.error('Ошибка регистрации');
+      }
+    } catch (error) {
+      console.error('Ошибка при отправке данных для регистрации', error);
+    }
+  }
   const validateEmail = (email) => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     return emailRegex.test(email);
@@ -102,7 +124,7 @@ function Account() {
               }
             />
             <input
-              type="email" // Используйте тип "email" для поля ввода почты
+              type="email"
               placeholder="Email"
               value={registerData.email}
               onChange={(e) =>

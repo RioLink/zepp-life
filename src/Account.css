@@ -1,15 +1,13 @@
-/* Для активной кнопки */
 .active-button {
     font-size: 24px;
     background-color: blue;
     color: white;
-    padding: 10px 20px; /* Регулируйте отступы по вашему усмотрению */
+    padding: 10px 20px;
     border: none;
-    border-radius: 5px; /* Для скругленных углов */
+    border-radius: 5px;
     cursor: pointer;
   }
   
-  /* Для неактивной кнопки */
   .inactive-button {
     font-size: 24px;
     background-color: gray;
@@ -20,8 +18,6 @@
     cursor: pointer;
   }
   
-
-  /* Стили для полей ввода */
 .input-field {
     margin-bottom: 10px;
     padding: 10px;
@@ -30,8 +26,7 @@
     font-size: 16px;
     width: 100%;
   }
-  
-  /* Стиль для кнопки */
+
   .register-button {
     font-size: 24px;
     background-color: blue;
