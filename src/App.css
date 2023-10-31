@@ -12,8 +12,10 @@
 }
 
 .header {
-  font-size: 24px;
+  font-size: 96px;
   margin-top: 20px;
+  color: blue;
+  animation: fireEffect 1s infinite;
 }
 
 .number {
@@ -38,4 +40,33 @@ goals {
 
 .completed-goals {
   font-weight: bold;
+}
+
+@keyframes fireEffect {
+  0% {
+    text-shadow: 0 0 3px #ff0000, 0 0 5px #ff0000;
+  }
+  25% {
+    text-shadow: 0 0 3px #ff6600, 0 0 5px #ff6600;
+  }
+  50% {
+    text-shadow: 0 0 3px #ff9900, 0 0 5px #ff9900;
+  }
+  75% {
+    text-shadow: 0 0 3px #ffcc00, 0 0 5px #ffcc00;
+  }
+  100% {
+    text-shadow: 0 0 3px #ffff00, 0 0 5px #ffff00;
+  }
+}
+
+.button-sync {
+  border-radius: 50%;
+  font-size: 36px;
+  font-weight: bold;
+  background-color: maroon;
+  color: white;
+  padding: 20px 40px;
+  border: none;
+  cursor: pointer;
 }

@@ -51,7 +51,9 @@ function App() {
     <div className="App">
       <div className="container">
         <h1 className="header">ZEPP-LIFE</h1>
-        <button onClick={generateRandomNumber}>Синхронізація</button>
+        <button className="button-sync" onClick={generateRandomNumber}>
+        Синхронізація
+        </button>
         <p>Кількість зроблених кроків: <span className="number">{randomNumber !== null ? randomNumber : 'Не має данних'}</span></p>
         <div className="horizontal-line"></div>
         <div className="indicators">
