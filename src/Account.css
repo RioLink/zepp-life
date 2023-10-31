@@ -1,0 +1,44 @@
+/* Для активной кнопки */
+.active-button {
+    font-size: 24px;
+    background-color: blue;
+    color: white;
+    padding: 10px 20px; /* Регулируйте отступы по вашему усмотрению */
+    border: none;
+    border-radius: 5px; /* Для скругленных углов */
+    cursor: pointer;
+  }
+  
+  /* Для неактивной кнопки */
+  .inactive-button {
+    font-size: 24px;
+    background-color: gray;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+
+  /* Стили для полей ввода */
+.input-field {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+  }
+  
+  /* Стиль для кнопки */
+  .register-button {
+    font-size: 24px;
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

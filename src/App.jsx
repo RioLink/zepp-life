@@ -5,6 +5,8 @@ import Navbar from './Navbar';
 import Training from './Training';
 import Saved from './Saved';
 import Account from './Account';
+import axios from 'axios';
+import NotFound from './NotFound';
 
 function App() {
   const [randomNumber, setRandomNumber] = useState(null);
@@ -19,7 +21,7 @@ function App() {
     const min = 0;
     const max = 100;
 
-    const randomSteps = Math.floor(Math.random() * (max - min + 1000)) + min;
+    const randomSteps = Math.floor(Math.random() * (max - min + 1)) + min;
 
     setRandomNumber(randomSteps);
 
@@ -36,6 +38,28 @@ function App() {
     );
     setPercentage(randomPercentage);
   };
+  
+  const sendDataToServer = async (userId, workoutData) => {
+    try {
+      const response = await axios.post('/api/saveWorkout', { userId, workoutData });
+      console.log('Данные успешно сохранены', response.data);
+    } catch (error) {
+      console.error('Произошла ошибка при сохранении данных', error);
+    }
+  };
+
+  const handleStopWorkout = () => {
+    const userId = 1;
+    const workoutData = {
+      stepsWalked: randomNumber !== null ? randomNumber : 0,
+      weight: weight !== null ? weight : 0,
+      waistSize: waistSize !== null ? waistSize : 0,
+      hoursOfSleep: hoursOfSleep !== null ? hoursOfSleep : 0,
+    };
+  
+    sendDataToServer(userId, workoutData);
+  };
+  
   const addGoal = (goal) => {
     setGoals([...goals, goal]);
   };
@@ -57,9 +81,10 @@ function App() {
       <div className="container">
         <Navbar />
         <Routes>
-          <Route path="/training" element={<Training />} />
+        <Route path="/training" element={<Training handleStopWorkout={handleStopWorkout} />} />
           <Route path="/saved" element={<Saved />} />
           <Route path="/account" element={<Account />} />
+          <Route path="*" element={<NotFound />} />
           <Route
             path="/"
             element={
