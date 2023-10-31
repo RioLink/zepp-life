@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './Navbar';
+import Training from './Training';
+import Saved from './Saved';
+import Account from './Account';
 
 function App() {
   const [randomNumber, setRandomNumber] = useState(null);
@@ -13,9 +18,9 @@ function App() {
   const generateRandomNumber = () => {
     const min = 0;
     const max = 100;
-  
+
     const randomSteps = Math.floor(Math.random() * (max - min + 1000)) + min;
-  
+
     setRandomNumber(randomSteps);
 
     const randomWeight = Math.floor(Math.random() * (100 - 40 + 1)) + 40;
@@ -48,57 +53,72 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <Router>
       <div className="container">
-        <h1 className="header">ZEPP-LIFE</h1>
-        <button className="button-sync" onClick={generateRandomNumber}>
-        Синхронізація
-        </button>
-        <p>Кількість зроблених кроків: <span className="number">{randomNumber !== null ? randomNumber : 'Не має данних'}</span></p>
-        <div className="horizontal-line"></div>
-        <div className="indicators">
-          <h2>Ваші бажані показники</h2>
-          <p>Вага: {weight}</p>
-          <p>Розмір талії: {waistSize}</p>
-          <p>Кількість годин сну: {hoursOfSleep}</p>
-          <p>Процент: {percentage}%</p>
-        </div>
-        <div>
-          <input
-            type="text"
-            placeholder="Додати ціль"
-            onKeyUp={(e) => {
-              if (e.key === 'Enter' && e.target.value.trim() !== '') {
-                addGoal(e.target.value);
-                e.target.value = '';
-              }
-            }}
+        <Navbar />
+        <Routes>
+          <Route path="/training" element={<Training />} />
+          <Route path="/saved" element={<Saved />} />
+          <Route path="/account" element={<Account />} />
+          <Route
+            path="/"
+            element={
+              <div>
+                <h1 className="header">ZEPP-LIFE</h1>
+                <button className="button-sync" onClick={generateRandomNumber}>
+                  Синхронізація
+                </button>
+                <p>
+                  Кількість зроблених кроків: <span className="number">{randomNumber !== null ? randomNumber : 'Не має данних'}</span>
+                </p>
+                <div className="horizontal-line"></div>
+                <div className="indicators">
+                  <h2>Ваші бажані показники</h2>
+                  <p>Вага: {weight}</p>
+                  <p>Розмір талії: {waistSize}</p>
+                  <p>Кількість годин сну: {hoursOfSleep}</p>
+                  <p>Процент: {percentage}%</p>
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Додати ціль"
+                    onKeyUp={(e) => {
+                      if (e.key === 'Enter' && e.target.value.trim() !== '') {
+                        addGoal(e.target.value);
+                        e.target.value = '';
+                      }
+                    }}
+                  />
+                </div>
+                <div className="goals">
+                  <h2>Ваші цілі</h2>
+                  <ul>
+                    {goals.map((goal, index) => (
+                      <li key={index}>
+                        {goal}
+                        <button onClick={() => completeGoal(index)}>Готово</button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="completed-goals">
+                  <h2>Виконані цілі</h2>
+                  <ul>
+                    {completedGoals.map((goal, index) => (
+                      <li key={index}>
+                        {goal}
+                        <button onClick={() => deleteCompletedGoal(index)}>Видалити</button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            }
           />
-        </div>
+        </Routes>
       </div>
-      <div className="goals">
-        <h2>Ваші цілі</h2>
-        <ul>
-          {goals.map((goal, index) => (
-            <li key={index}>
-              {goal}
-              <button onClick={() => completeGoal(index)}>Готово</button>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="completed-goals">
-        <h2>Виконані цілі</h2>
-        <ul>
-          {completedGoals.map((goal, index) => (
-            <li key={index}>
-              {goal}
-              <button onClick={() => deleteCompletedGoal(index)}>Видалити</button>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    </Router>
   );
 }
 
