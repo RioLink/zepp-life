@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const expressSession = require('express-session');
@@ -9,6 +10,8 @@ const bcrypt = require('bcrypt');
 
 const app = express();
 const port = process.env.PORT || 3001;
+
+app.use(cors()); // обмежити оріджини в майбутньому
 
 app.use(
   expressSession({
