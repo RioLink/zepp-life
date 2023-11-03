@@ -98,7 +98,7 @@ app.post('/login', passport.authenticate('local'), (req, res) => {
 });
 
 app.get('/account', (req, res) => {
-  res.send('Добро пожаловать в ваш аккаунт, ' + req.user.username);
+  res.send('Ласкаво просимо у ваш аккаунт, ' + req.user.username);
 });
 
 app.get('/logout', (req, res) => {

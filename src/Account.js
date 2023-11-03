@@ -19,14 +19,14 @@ function Account() {
 
       if (response.data.success) {
 
-        console.log('Вход выполнен успешно');
+        console.log('Вхід виконано успішно');
 
       } else {
 
-        console.error('Ошибка входа');
+        console.error('Помилка входу');
       }
     } catch (error) {
-      console.error('Ошибка при отправке данных для входа', error);
+      console.error('Помилка при надсиланні даних для входу', error);
     }
   };
 
@@ -39,29 +39,29 @@ function Account() {
       !registerData.password ||
       !registerData.confirmPassword
     ) {
-      alert('Заполните все поля');
+      alert('Заповніть всі поля');
       return;
     }
 
     if (!validateEmail(registerData.email)) {
-      alert('Неверный формат почты');
+      alert('Неправильний формат пошти');
       return;
     }
 
     if (registerData.password !== registerData.confirmPassword) {
-      alert('Пароли не совпадают');
+      alert('Паролі не співпадають');
       return;
     }
 
     try {
       const response = await axios.post('/api/register', registerData);
       if (response.data.success) {
-        console.log('Регистрация выполнена успешно');
+        console.log('Реєстрація виконана успішно');
       } else {
-        console.error('Ошибка регистрации');
+        console.error('Помилка реєстрації');
       }
     } catch (error) {
-      console.error('Ошибка при отправке данных для регистрации', error);
+      console.error('Помилка при надсиланні даних для реєстрації', error);
     }
   }
   const validateEmail = (email) => {
@@ -76,23 +76,23 @@ function Account() {
           className={activeTab === 'login' ? 'active-button' : 'inactive-button'}
           onClick={() => setActiveTab('login')}
         >
-          Вход
+          Вхід
         </button>
         <button
           className={activeTab === 'register' ? 'active-button' : 'inactive-button'}
           onClick={() => setActiveTab('register')}
         >
-          Регистрация
+          Реєстрація
         </button>
       </div>
 
       {activeTab === 'login' && (
         <div>
-          <h2>Вход</h2>
+          <h2>Вхід</h2>
           <form onSubmit={handleLogin}>
             <input
               type="text"
-              placeholder="Имя пользователя"
+              placeholder="Ім'я користувача"
               value={loginData.username}
               onChange={(e) =>
                 setLoginData({ ...loginData, username: e.target.value })
@@ -106,18 +106,18 @@ function Account() {
                 setLoginData({ ...loginData, password: e.target.value })
               }
             />
-            <button type="submit">Войти</button>
+            <button type="submit">Увійти</button>
           </form>
         </div>
       )}
 
       {activeTab === 'register' && (
         <div>
-          <h2>Регистрация</h2>
+          <h2>Реєстрація</h2>
           <form onSubmit={handleRegister}>
             <input
               type="text"
-              placeholder="Имя пользователя"
+              placeholder="Ім'я користувача"
               value={registerData.username}
               onChange={(e) =>
                 setRegisterData({ ...registerData, username: e.target.value })
@@ -141,7 +141,7 @@ function Account() {
             />
             <input
               type="password"
-              placeholder="Подтвердите пароль"
+              placeholder="Підтвердіть пароль"
               value={registerData.confirmPassword}
               onChange={(e) =>
                 setRegisterData({
@@ -150,7 +150,7 @@ function Account() {
                 })
               }
             />
-            <button type="submit">Зарегистрироваться</button>
+            <button type="submit">Зареєструватись</button>
           </form>
         </div>
       )}

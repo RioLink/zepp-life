@@ -1,7 +1,6 @@
-/* global handleStopWorkout */
 import React, { useState, useEffect } from 'react';
 
-function Training() {
+function Training({ handleStopWorkout }) {
   const [selectedTab, setSelectedTab] = useState(null);
   const [timers, setTimers] = useState(Array(20).fill(0));
   const [isRunning, setIsRunning] = useState(false);
